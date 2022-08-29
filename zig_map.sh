@@ -60,11 +60,13 @@ zig_triplets_env() {
 zig_install_nix() {
     export ENV_FILE="$1"
 
-    if [[ -d $ZIG_HOME ]]
+    if [[ -d "$ZIG_HOME" ]]
     then
         echo Found Cached ZIG - Skipping install
         return
     fi
+
+    echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_ARCH OS-$ZIG_OS"
     
     mkdir -p zig
     cd zig
