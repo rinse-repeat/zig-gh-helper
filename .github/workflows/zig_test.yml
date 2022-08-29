@@ -53,7 +53,7 @@ jobs:
         uses: actions/cache@v3
         with:
           key: zig-${{ inputs.target }}
-          path: zig/${{ env.ZIG_HOME }}
+          path: ${{ env.ZIG_HOME }}
       - name: Setup ZIG (Non-Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
         run: |
