@@ -22,7 +22,7 @@ on:
       ext-cache:
         description: 'Cache Extension'
         required: false
-        default: 000
+        default: 'AAA'
         type: string
       zig-version:
         description: 'Zig Version'
