@@ -17,13 +17,13 @@ zig_triplets_env() {
     case $TARGET in
 
         *"linux"*)
-            echo "TARGET_OS=linux" | tee -a $ENV_FILE
+            TARGET_OS=linux
             ;;
         *"windows"*)
-            echo "TARGET_OS=windows" | tee -a $ENV_FILE            
+            TARGET_OS=windows
             ;;
         *"macos"*)
-            echo "TARGET_OS=macos" | tee -a $ENV_FILE            
+            TARGET_OS=macos
             ;;
         
     esac
@@ -33,16 +33,19 @@ zig_triplets_env() {
     case $TARGET in
 
         *"x86_64"*)
-            echo "TARGETT_ARCH=x86_64" | tee -a $ENV_FILE
+            export TARGET_ARCH=x86_64
             ;;
         *"aarch64"*)
-            echo "TARGETT_ARCH=aarch64" | tee -a $ENV_FILE
+            export TARGET_ARCH=aarch64
             ;;
         *"arm"*)
-            echo "TARGETT_ARCH=armv7a" | tee -a $ENV_FILE            
+            export TARGET_ARCH=armv7a
             ;;
         
     esac
+
+    echo "TARGET_OS=$TARGET_oS" | tee -a $ENV_FILE
+    echo "TARGET_ARCH=$TARGET_ARCH" | tee -a $ENV_FILE
 }
 
 zig_install() {
