@@ -23,7 +23,7 @@ jobs:
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
           # end of optional handling for multi line json
-          echo "::set-output name=matrix-json::$content"
+          echo "::set-output name=matrix::$content"
 
   run-matrix:
     name: The Tester
