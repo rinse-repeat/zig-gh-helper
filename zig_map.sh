@@ -28,7 +28,10 @@ zig_triplets_env() {
             ZIG_OS=macos
             ZIG_EXT=tar.xz
             ;;
-        
+        *"darwin"*)
+            ZIG_OS=macos
+            ZIG_EXT=tar.xz
+            ;;        
     esac
 
     #################
