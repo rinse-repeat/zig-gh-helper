@@ -43,7 +43,7 @@ jobs:
         run: |
           echo "${{ steps.set_var.outputs.matrixJson }}"
       - name: Setup ZIG (Non-Windows)
-        if: ${{ contains(inputs.os, windows') == false }}
+        if: ${{ contains(inputs.os, 'windows') == false }}
         run: |
           source ./zig-helper/zig_map.sh
           zig_triplets_env $GITHUB_ENV ${{ inputs.target }}
