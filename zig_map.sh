@@ -100,8 +100,8 @@ zig_install_nix() {
     esac
 
     export SHA_OUT=""
-    case $ZIG_OS in
-        "macos")
+    case $RUNNER_OS in
+        "MacOS")
             export SHA_OUT=`shasum -a 256 zig.$ZIG_EXT | cut -f 1 -d " "`
             ;;
         *)
