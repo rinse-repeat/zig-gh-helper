@@ -49,7 +49,7 @@ jobs:
           zig_triplets_env $GITHUB_ENV ${{ inputs.target }}
           cat $GITHUV_ENV
       - name: NIX Cache ZIG ${{ env.ZIG_HOME }}
-        if ${{ contains(inputs.os, 'windows') == false }}
+        if: ${{ contains(inputs.os, 'windows') == false }}
         uses: actions/cache@v3
           with:
             path: zig/${{ env.ZIG_HOME }}
