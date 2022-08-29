@@ -1,4 +1,4 @@
-name: "Zig flow tester"
+name: "Zig Installer"
 
 on:
 # debug:
