@@ -48,5 +48,7 @@ jobs:
           source ./zig-helper/zig_map.sh
           zig_triplets_env $GITHUB_ENV ${{ inputs.target }}
           cat $GITHUV_ENV
+          zig_install
       - name: Setup ZIG (Windows)
+        if: ${{ contains(inputs.os, 'windows') == false }}
         run: echo Not implemented! XD

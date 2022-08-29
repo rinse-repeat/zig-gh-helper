@@ -45,7 +45,7 @@ zig_triplets_env() {
     esac
 }
 
-install_target() {
+zig_install() {
 
     mkdir zig
     cd zig
