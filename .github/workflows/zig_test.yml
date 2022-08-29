@@ -18,12 +18,9 @@ on:
 jobs:
   zig-test:
     name: ZIG Test on ${{ inputs.target }} OS ${{ inputs.os }}
-    runs-on: ${{ inputs.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
-      matrix:
-        os: [${{ inputs.os }}]
-        rust-target: [${{ inputs.target }}]
 #    env:
     steps:
       - name: Pull zig-helper
