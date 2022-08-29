@@ -53,6 +53,14 @@ jobs:
           content="${content//$'\r'/'%0D'}"
           # end of optional handling for multi line json
           echo "::set-output name=matrixJson::$content"
+      - name: Load checksum
+        run: |
+          content=`cat ./zig-helper/zig-checksums-${{ env.ZIG_VERSION }}.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          export ZIG_CHECKSUM=`cat zig-checksums-0.9.1.json | jq --raw-output ".[\"${{ ZIG_OS }}_${{ ZIG_ARCH }}\"]"`
+          echo "ZIG_CHECKSUM=$ZIG_CHECKSUM" | tee -a $GITHUB_ENV
       - name: Show matrixJson
         run: |
           echo "${{ steps.set_var.outputs.matrixJson }}"
