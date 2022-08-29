@@ -26,18 +26,16 @@ jobs:
           echo "::set-output name=matrix::$content"
 
   run-matrix:
-    name: The Tester
-    runs-on: ubuntu-latest
     needs: [matrix]
+    uses: rinse-repeat/zig-gh-helper/.github/workflows/zig_install.yml@main
+    with:
+      target: ${{ matrix.rust-target }}
+      os: ${{ matrix.os }}
+      use-cache: false
+      ext-cache: AAA
+      zig-version: 0.9.1    
+    name: The Tester
     strategy:
       fail-fast: false
       matrix:
         include: ${{ fromJson(needs.matrix.outputs.matrix-json) }}
-    steps:
-      - uses: rinse-repeat/zig-gh-helper/.github/workflows/zig_install.yml@main
-        with:
-          target: ${{ matrix.rust-target }}
-          os: ${{ matrix.os }}
-          use-cache: false
-          ext-cache: AAA
-          zig-version: 0.9.1
