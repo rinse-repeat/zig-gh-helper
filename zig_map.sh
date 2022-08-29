@@ -50,6 +50,10 @@ zig_triplets_env() {
     echo "ZIG_EXT=$ZIG_EXT" | tee -a $ENV_FILE
     echo "TARGET_OS=$TARGET_OS" | tee -a $ENV_FILE
     echo "TARGET_ARCH=$TARGET_ARCH" | tee -a $ENV_FILE
+
+    export ZIG_HOME=zig/zig-$TARGET_OS-$TARGET_ARCH
+    echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
+
 }
 
 zig_install_nix() {
@@ -72,6 +76,4 @@ zig_install_nix() {
             ;;
     esac
 
-    export ZIG_HOME=$PWD/zig-$TARGET_OS-$TARGET_ARCH
-    echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 }
