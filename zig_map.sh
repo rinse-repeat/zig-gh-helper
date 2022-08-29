@@ -17,15 +17,15 @@ zig_triplets_env() {
     case $TARGET in
 
         *"linux"*)
-            TARGET_OS=linux
+            ZIG_OS=linux
             ZIG_EXT=tar.xz
             ;;
         *"windows"*)
-            TARGET_OS=windows
+            ZIG_OS=windows
             ZIG_EXT=zip
             ;;
         *"macos"*)
-            TARGET_OS=macos
+            ZIG_OS=macos
             ZIG_EXT=tar.xz
             ;;
         
@@ -36,23 +36,23 @@ zig_triplets_env() {
     case $TARGET in
 
         *"x86_64"*)
-            export TARGET_ARCH=x86_64
+            export ZIG_ARCH=x86_64
             ;;
         *"aarch64"*)
-            export TARGET_ARCH=aarch64
+            export ZIG_ARCH=aarch64
             ;;
         *"arm"*)
-            export TARGET_ARCH=armv7a
+            export ZIG_ARCH=armv7a
             ;;
         
     esac
 
     echo "ZIG_EXT=$ZIG_EXT" | tee -a $ENV_FILE
-    echo "TARGET_OS=$TARGET_OS" | tee -a $ENV_FILE
-    echo "TARGET_ARCH=$TARGET_ARCH" | tee -a $ENV_FILE
+    echo "ZIG_OS=ZIG_OS" | tee -a $ENV_FILE
+    echo "ZIG_ARCH=$ZIG_ARCH" | tee -a $ENV_FILE
 
     # TODO: Only from current path? come w/ something better.
-    export ZIG_HOME=$PWD/zig/zig-$TARGET_OS-$TARGET_ARCH-$ZIG_VERSION
+    export ZIG_HOME=$PWD/zig/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION
     echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 
 }
@@ -64,12 +64,12 @@ zig_install_nix() {
     cd zig
     case $ZIG_EXT in
         "tar.xz")
-            wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-$ZIG_VERSION.tar.xz
+            wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.tar.xz
             tar -xvf zig.tar.xz > /dev/null
             rm zig.tar.xz
             ;;
         "zip")
-            wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-$ZIG_VERSION.zip
+            wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.zip
             unzip -q zig.zip
             mv 
             rm zig.zip
