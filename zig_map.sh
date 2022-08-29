@@ -60,12 +60,14 @@ zig_install_nix() {
     case $ZIG_EXT in
         "tar.xz")
             wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-0.9.1.tar.xz
-            tar --strip-components=1 -xvf zig.tar.xz
+#            tar --strip-components=1 -q -xvf zig.tar.xz
+            tar -xvf zig.tar.xz > /dev/null
             rm zig.tar.xz
             ;;
         "zip")
             wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-0.9.1.zip
             unzip -q zig.zip
+            mv 
             rm zig.zip
             ;;
     esac
