@@ -51,7 +51,8 @@ zig_triplets_env() {
     echo "TARGET_OS=$TARGET_OS" | tee -a $ENV_FILE
     echo "TARGET_ARCH=$TARGET_ARCH" | tee -a $ENV_FILE
 
-    export ZIG_HOME=$PWD/zig/zig-$TARGET_OS-$TARGET_ARCH
+    # TODO: Only from current path? come w/ something better.
+    export ZIG_HOME=$PWD/zig/zig-$TARGET_OS-$TARGET_ARCH-0.9.1
     echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 
 }
@@ -64,7 +65,6 @@ zig_install_nix() {
     case $ZIG_EXT in
         "tar.xz")
             wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-0.9.1.tar.xz
-#            tar --strip-components=1 -q -xvf zig.tar.xz
             tar -xvf zig.tar.xz > /dev/null
             rm zig.tar.xz
             ;;
