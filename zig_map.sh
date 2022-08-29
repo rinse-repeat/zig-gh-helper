@@ -99,12 +99,11 @@ zig_install_nix() {
             ;;
     esac
 
-#    echo "RUNNNER OS: $RUNNER_OS"
-#    export | grep RUNNER
+    export
     
     export SHA_OUT=""
     case $RUNNER_OS in
-        "mac*")
+        "mac"*)
             export SHA_OUT=`shasum -a 256 zig.$ZIG_EXT | cut -f 1 -d " "`
             ;;
         *)
