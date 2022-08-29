@@ -16,10 +16,11 @@ on:
       os:
         description: 'Runner OS'
         required: true
-        type: choice
-          - macos-latest
-          - windows-latest
-          - ubuntu-latest
+        type: string
+#        type: choice
+#          - macos-latest
+#          - windows-latest
+#          - ubuntu-latest
       use-cache:
         description: 'Zig Cache'
         required: true
