@@ -69,7 +69,7 @@ zig_triplets_env() {
 }
 
 zig_install_nix() {
-    export ENV_FILE="$1"
+    export RUNNER_OS="$1"
 
     if [[ -d "$ZIG_HOME" ]]
     then
