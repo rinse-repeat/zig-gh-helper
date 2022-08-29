@@ -85,7 +85,7 @@ zig_install_nix() {
     esac
 
     export SHA_OUT=""
-    export SHA_OUT=`sha256sum zig.$ZIG_EXT`
+    export SHA_OUT=`sha256sum zig.$ZIG_EXT | cut -f 1 -d " "`
     
     if [[ "$ZIG_CHECKSUM" != "$SHA_OUT" ]]
     then
