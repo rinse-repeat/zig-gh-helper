@@ -48,7 +48,7 @@ zig_triplets_env() {
     esac
 
     echo "ZIG_EXT=$ZIG_EXT" | tee -a $ENV_FILE
-    echo "ZIG_OS=ZIG_OS" | tee -a $ENV_FILE
+    echo "ZIG_OS=$ZIG_OS" | tee -a $ENV_FILE
     echo "ZIG_ARCH=$ZIG_ARCH" | tee -a $ENV_FILE
 
     # TODO: Only from current path? come w/ something better.
