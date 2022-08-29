@@ -60,7 +60,12 @@ zig_triplets_env() {
 zig_install_nix() {
     export ENV_FILE="$1"
 
-    mkdir zig
+    if [[ -d $ZIG_HOME ]]
+    then
+        return
+    fi
+    
+    mkdir -p zig
     cd zig
     case $ZIG_EXT in
         "tar.xz")
