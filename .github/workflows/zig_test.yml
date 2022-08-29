@@ -1,0 +1,54 @@
+name: "Zig flow tester"
+
+on:
+  workflow_call:
+    inputs:
+      target:
+        description: 'Target Triplet'
+        required: true
+        type: string
+      os:
+        description: 'Runner OS'
+        required: true
+        type: choice
+          - macos-latest
+          - windows-latest
+          - ubuntu-latest
+
+jobs:
+  zig-test:
+    name: ZIG Test on ${{ inputs.target }} OS ${{ inputs.os }}
+    runs-on: ${{ inputs.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [${{ inputs.os }}]
+        rust-target: [${{ inputs.target }}]
+#    env:
+    steps:
+      - name: Pull zig-helper
+        uses: actions/checkout@v3
+        with:
+          repository: rinse-repeat/zig-gh-helper
+          path: zig-helper
+      - name: Set Matrix
+        id: set_var
+        run: |
+          content=`cat ./matrix.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=matrixJson::$content"
+      - name: Show matrixJson
+        run: |
+          echo "${{ steps.set_var.outputs.matrixJson }}"
+      - name: Setup ZIG (Non-Windows)
+        if: ${{ contains(inputs.os, windows') == false }}
+        run: |
+          source ./zig-helper/zig_map.sh
+          zig_triplets_env $GITHUB_ENV ${{ inputs.target }}
+          cat $GITHUV_ENV
+      - name: Setup ZIG (Windows)
+        run: echo Not implemented! XD
