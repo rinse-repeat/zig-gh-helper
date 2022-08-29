@@ -18,12 +18,15 @@ zig_triplets_env() {
 
         *"linux"*)
             TARGET_OS=linux
+            ZIG_EXT=tar.xz
             ;;
         *"windows"*)
             TARGET_OS=windows
+            ZIG_EXT=zip
             ;;
         *"macos"*)
             TARGET_OS=macos
+            ZIG_EXT=tar.xz
             ;;
         
     esac
@@ -44,16 +47,29 @@ zig_triplets_env() {
         
     esac
 
-    echo "TARGET_OS=$TARGET_oS" | tee -a $ENV_FILE
+    echo "ZIG_EXT=$ZIG_EXT" | tee -a $ENV_FILE
+    echo "TARGET_OS=$TARGET_OS" | tee -a $ENV_FILE
     echo "TARGET_ARCH=$TARGET_ARCH" | tee -a $ENV_FILE
 }
 
-zig_install() {
+zig_install_nix() {
+    export ENV_FILE="$1"
 
     mkdir zig
     cd zig
-    wget -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-0.9.1.tar.xz
-    tar --strip-components=1 -xvf zig.tar.xz
-    rm zig.tar.xz
+    case $ZIG_EXT in
+        "tar.xz")
+            wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-0.9.1.tar.xz
+            tar --strip-components=1 -xvf zig.tar.xz
+            rm zig.tar.xz
+            ;;
+        "zip")
+            wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$TARGET_OS-$TARGET_ARCH-0.9.1.zip
+            unzip -q zig.zip
+            rm zig.zip
+            ;;
+    esac
 
+    export ZIG_HOME=$PWD/zig-$TARGET_OS-$TARGET_ARCH
+    echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 }
