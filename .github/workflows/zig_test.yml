@@ -1,7 +1,7 @@
 name: "Zig flow tester"
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       target:
         description: 'Target Triplet'
