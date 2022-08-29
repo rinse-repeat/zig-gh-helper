@@ -62,6 +62,7 @@ zig_install_nix() {
 
     if [[ -d $ZIG_HOME ]]
     then
+        echo Found Cached ZIG - Skipping install
         return
     fi
     
