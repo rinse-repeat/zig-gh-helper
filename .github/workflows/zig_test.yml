@@ -64,11 +64,7 @@ jobs:
           cat $GITHUV_ENV
       - name: Load ZIG checksum
         run: |
-          content=`cat ./zig-helper/zig-checksums-${{ env.ZIG_VERSION }}.json`
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          export ZIG_CHECKSUM=`cat zig-checksums-0.9.1.json | jq --raw-output ".[\"${{ env.ZIG_OS }}_${{ env.ZIG_ARCH }}\"]"`
+          export ZIG_CHECKSUM=`cat ./zig-helper/zig-checksums-0.9.1.json | jq --raw-output ".[\"${{ env.ZIG_OS }}_${{ env.ZIG_ARCH }}\"]"`
           echo "ZIG_CHECKSUM=$ZIG_CHECKSUM" | tee -a $GITHUB_ENV
       - name: NIX Cache ZIG
         if: ${{ inputs.use-cache == true && contains(inputs.os, 'windows') == false }}
