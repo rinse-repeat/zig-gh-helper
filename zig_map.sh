@@ -11,7 +11,7 @@
 zig_triplets_env() {
     export ENV_FILE="$1"
     export TARGET="$2"
-
+    
     #################
     # Supported OS
     case $TARGET in
@@ -51,7 +51,7 @@ zig_triplets_env() {
     echo "TARGET_OS=$TARGET_OS" | tee -a $ENV_FILE
     echo "TARGET_ARCH=$TARGET_ARCH" | tee -a $ENV_FILE
 
-    export ZIG_HOME=zig/zig-$TARGET_OS-$TARGET_ARCH
+    export ZIG_HOME=$PWD/zig/zig-$TARGET_OS-$TARGET_ARCH
     echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 
 }
