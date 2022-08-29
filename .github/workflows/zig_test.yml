@@ -34,7 +34,7 @@ jobs:
       matrix:
         include: ${{ fromJson(needs.matrix.outputs.matrix-json) }}
     steps:
-      - uses: rinse-repeat/zig-gh-helper/zig_install.yml@main
+      - uses: rinse-repeat/zig-gh-helper/.github/workflows/zig_install.yml@main
         with:
           target: ${{ matrix.rust-target }}
           os: ${{ matrix.os }}
