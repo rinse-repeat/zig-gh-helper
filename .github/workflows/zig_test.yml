@@ -14,11 +14,11 @@ on:
           - macos-latest
           - windows-latest
           - ubuntu-latest
-       zig-version:
-         description: 'Zig Version'
-         required: true
-         type: string
-         default: 0.9.1
+      zig-version:
+        description: 'Zig Version'
+        required: true
+        type: string
+        default: 0.9.1
 
 jobs:
   zig-test:
