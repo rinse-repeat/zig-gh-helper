@@ -14,6 +14,11 @@ on:
           - macos-latest
           - windows-latest
           - ubuntu-latest
+       zig-version:
+         description: 'Zig Version'
+         required: true
+         type: string
+         default: 0.9.1
 
 jobs:
   zig-test:
@@ -21,17 +26,16 @@ jobs:
     runs-on: ${{ inputs.os }}
     strategy:
       fail-fast: false
-    env:
-      HELLO: aa
     steps:
       - name: Pull zig-helper
         uses: actions/checkout@v3
         with:
           repository: rinse-repeat/zig-gh-helper
           path: zig-helper
-      - name: Set Matrix
+      - name: Set Vars & Matrix
         id: set_var
         run: |
+          echo "ZIG_VERSION=${{ inputs.zig-version }}" | tee -a $GITHUB_ENV
           content=`cat ./zig-helper/matrix.json`
           # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
@@ -53,7 +57,7 @@ jobs:
         uses: actions/cache@v3
         with:
           key: zig-${{ inputs.target }}
-          path: ~/${{ env.ZIG_HOME }}
+          path: ./zig/zig-${{ env.TARGET_OS }}-${{ env.TARGET_ARCH }}-${{ ZIG_VERSION }}
       - name: Setup ZIG (Non-Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
         run: |
