@@ -74,14 +74,21 @@ zig_install_nix() {
         "tar.xz")
             wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.tar.xz
             tar -xvf zig.tar.xz > /dev/null
-            rm zig.tar.xz
             ;;
         "zip")
             wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.zip
             unzip -q zig.zip
-            mv 
-            rm zig.zip
             ;;
     esac
 
+    export SHA_OUT=""
+    export SHA_OUT=`sha256sum zig.$ZIG_EXT`
+    
+    if [[ $ZIG_CHECKSUM != $SHA_OUT ]]
+    then
+        echo "Downloaded ZIG checksums mismatch!"
+        exit 10
+    fi
+    
+    rm zig.$ZIG_EXT
 }
