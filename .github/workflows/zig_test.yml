@@ -52,3 +52,5 @@ jobs:
       - name: Setup ZIG (Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
         run: echo Not implemented! XD
+      - name: LS
+        run: ls -laR ./
