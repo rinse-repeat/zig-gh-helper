@@ -51,8 +51,8 @@ jobs:
       - name: NIX Cache ZIG ${{ env.ZIG_HOME }}
         if: ${{ contains(inputs.os, 'windows') == false }}
         uses: actions/cache@v3
-          with:
-            path: zig/${{ env.ZIG_HOME }}
+        with:
+          path: zig/${{ env.ZIG_HOME }}
       - name: Setup ZIG (Non-Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
         run: |
