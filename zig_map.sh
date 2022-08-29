@@ -70,6 +70,9 @@ zig_install_nix() {
     
     mkdir -p zig
     cd zig
+
+    export ZIG_FILE="zig.$ZIG_EXT"
+    
     case $ZIG_EXT in
         "tar.xz")
             wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.tar.xz
@@ -87,6 +90,8 @@ zig_install_nix() {
     if [[ $ZIG_CHECKSUM != $SHA_OUT ]]
     then
         echo "Downloaded ZIG checksums mismatch!"
+        echo "- Downloaded file $ZIG_FILE checksum: $SHA_OUT"
+        echo "- Expected checksum: $ZIG_CHECKSUM"
         exit 10
     fi
     
