@@ -87,7 +87,7 @@ zig_install_nix() {
     case $ZIG_EXT in
         "tar.xz")
             wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.tar.xz
-            tar -xvf zig.tar.xz > /dev/null
+            tar -xvf zig.tar.xz > /dev/null 2>&1
             ;;
         "zip")
             wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.zip
@@ -102,7 +102,7 @@ zig_install_nix() {
     export SHA_OUT=""
     case $ZIG_OS in
         "macos")
-            export SHA_OUT=`shasum -m 256 zig.$ZIG_EXT | cut -f 1 -d " "`
+            export SHA_OUT=`shasum -a 256 zig.$ZIG_EXT | cut -f 1 -d " "`
             ;;
         *)
             export SHA_OUT=`sha256sum zig.$ZIG_EXT | cut -f 1 -d " "`
