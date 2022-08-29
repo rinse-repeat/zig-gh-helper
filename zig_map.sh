@@ -87,7 +87,7 @@ zig_install_nix() {
     export SHA_OUT=""
     export SHA_OUT=`sha256sum zig.$ZIG_EXT`
     
-    if [[ $ZIG_CHECKSUM != $SHA_OUT ]]
+    if [[ "$ZIG_CHECKSUM" != "$SHA_OUT" ]]
     then
         echo "Downloaded ZIG checksums mismatch!"
         echo "- Downloaded file $ZIG_FILE checksum: $SHA_OUT"
