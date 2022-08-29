@@ -31,7 +31,11 @@ zig_triplets_env() {
         *"darwin"*)
             ZIG_OS=macos
             ZIG_EXT=tar.xz
-            ;;        
+            ;;
+        *)
+            echo "zig_map.sh ERROR No ZIG_OS handler for TARGET=$TARGET"
+            exit 255
+            ;;
     esac
 
     #################
@@ -46,6 +50,10 @@ zig_triplets_env() {
             ;;
         *"arm"*)
             export ZIG_ARCH=armv7a
+            ;;
+        *)
+            echo "zig_map.sh ERROR No ZIG_ARCH handler for TARGET=$TARGET"
+            exit 255
             ;;
         
     esac
@@ -85,10 +93,21 @@ zig_install_nix() {
             wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.zip
             unzip -q zig.zip
             ;;
+        *)
+            echo "zig_map ERROR: No handler for ZIG_EXT=$ZIG_EXT"
+            exit 255
+            ;;
     esac
 
     export SHA_OUT=""
-    export SHA_OUT=`sha256sum zig.$ZIG_EXT | cut -f 1 -d " "`
+    case $ZIG_OS in
+        "macos")
+            export SHA_OUT=`shasum -m 256 zig.$ZIG_EXT | cut -f 1 -d " "`
+            ;;
+        *)
+            export SHA_OUT=`sha256sum zig.$ZIG_EXT | cut -f 1 -d " "`
+            ;;      
+    esac
     
     if [[ "$ZIG_CHECKSUM" != "$SHA_OUT" ]]
     then
