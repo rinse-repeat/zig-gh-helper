@@ -18,7 +18,7 @@ on:
 jobs:
   zig-test:
     name: ZIG Test on ${{ inputs.target }} OS ${{ inputs.os }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ inputs.os }}
     strategy:
       fail-fast: false
     env:
