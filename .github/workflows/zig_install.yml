@@ -39,7 +39,7 @@ on:
 
 jobs:
   zig-test:
-    name: ZIG Install on ${{ inputs.target }} OS ${{ inputs.os }} RunnerArch ${{ env.RUNNER_ARCH }}
+    name: ZIG Install on ${{ inputs.target }} OS ${{ inputs.os }}
     runs-on: ${{ inputs.os }}
     strategy:
       fail-fast: false
