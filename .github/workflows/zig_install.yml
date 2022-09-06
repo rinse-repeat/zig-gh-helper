@@ -74,12 +74,12 @@ jobs:
           export ZIG_CHECKSUM=`cat ./zig-helper/zig-checksums-0.9.1.json | jq --raw-output ".[\"${{ env.ZIG_OS }}_${{ env.ZIG_ARCH }}\"]"`
           echo "ZIG_CHECKSUM=$ZIG_CHECKSUM" | tee -a $GITHUB_ENV
           
-#      - name: NIX Cache ZIG
-#        if: ${{ inputs.use-cache == true && contains(inputs.os, 'windows') == false }}
-#        uses: actions/cache@v3
-#        with:
-#          key: zig-${{ env.ZIG_OS }}-${{ env.ZIG_ARCH }}-${{ env.ZIG_VERSION }}-${{ inputs.ext-cache }}
-#          path: ./zig
+      - name: NIX Cache ZIG
+        if: ${{ inputs.use-cache == true && contains(inputs.os, 'windows') == false }}
+        uses: actions/cache@v3
+          with:
+            key: zig-${{ env.ZIG_OS }}-${{ env.ZIG_ARCH }}-${{ env.ZIG_VERSION }}-${{ inputs.ext-cache }}
+            path: ./zig
           
       - name: Setup ZIG (Non-Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
@@ -91,5 +91,5 @@ jobs:
       - name: Setup ZIG (Windows)
         if: ${{ contains(inputs.os, 'windows') == true }}
         run: echo Not implemented! XD
-      - name: find
-        run: find $HOME -type d -name \*zig\*
+#      - name: find
+#        run: find $HOME -type d -name \*zig\*
