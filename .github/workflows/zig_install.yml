@@ -78,8 +78,7 @@ jobs:
         uses: actions/cache@v3
         with:
           key: zig-${{ env.ZIG_OS }}-${{ env.ZIG_ARCH}}-${{ env.ZIG_VERSION}}-${{ inputs.ext-cache }}
-          path: ${{ env.ZIG_HOME }}
-#          path: ~/zig/zig-${{ env.ZIG_OS }}-${{ env.ZIG_ARCH }}-${{ env.ZIG_VERSION }}
+          path: zig
       - name: Setup ZIG (Non-Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
         run: |
