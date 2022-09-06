@@ -77,9 +77,9 @@ jobs:
       - name: NIX Cache ZIG
         if: ${{ inputs.use-cache == true && contains(inputs.os, 'windows') == false }}
         uses: actions/cache@v3
-          with:
-            key: zig-${{ env.ZIG_OS }}-${{ env.ZIG_ARCH }}-${{ env.ZIG_VERSION }}-${{ inputs.ext-cache }}
-            path: ./zig
+        with:
+          key: zig-${{ env.ZIG_OS }}-${{ env.ZIG_ARCH }}-${{ env.ZIG_VERSION }}-${{ inputs.ext-cache }}
+          path: zig
           
       - name: Setup ZIG (Non-Windows)
         if: ${{ contains(inputs.os, 'windows') == false }}
