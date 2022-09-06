@@ -63,7 +63,7 @@ zig_triplets_env() {
     echo "ZIG_ARCH=$ZIG_ARCH" | tee -a $ENV_FILE
 
     # TODO: Only from current path? come w/ something better.
-    export ZIG_HOME=$PWD/zig/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION
+    export ZIG_HOME=$HOME/zig/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION
     echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 
 }
@@ -80,6 +80,7 @@ zig_install_nix() {
     echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_ARCH OS-$ZIG_OS"
 
     # TODO: DRY introduce ZIG_ROOT ?
+    cd $HOME
     mkdir -p zig
     cd zig
 
