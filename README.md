@@ -26,6 +26,12 @@ jobs:
       zig-version: 0.9.1
 ```
 
+Where the `with:` keys are:
+ - os / string: the GitHub runner to be used
+ - use-cache / boolean: Cache the Zig ? Strongly recommended
+ - ext-cache / string: Cache key suffix
+ - zig-version / string: Zig Version - 0.9.1 version supported atm (feel free to PR more checksums)
+
 You can also install multiple Zig's from a matrix e.g. [matrix.json](matrix.json) in this repo:
 
 e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.github/workflows/zig_test.yml
