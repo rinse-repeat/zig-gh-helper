@@ -61,34 +61,46 @@ zig_triplets_env() {
 
 }
 
-zig_install_nix() {
-    export RUNNER_OS="$1"
+setup_runner_nix() {
+    ENV_FILE="$1"
+    RUNNER_OS="$2"
     
-    if [[ -d "$ZIG_HOME" ]]
+    export ZIG_RUNNER_OS="unknown"
+    export ZIG_RUNNER_ARCH="x86_64"
+    export ZIG_EXT="tar.xz"
+    
+    case $RUNNER_OS in
+        *"windows"*)
+            export ZIG_RUNNER_OS="windows"
+            export ZIG_EXT="zip"
+            ;;
+        *"ubuntu"*)
+            export ZIG_RUNNER_OS="linux"
+            ;;
+        *"mac"*)
+            export ZIG_RUNNER_OS="macos"
+            ;;
+        *"freebsd"*)
+            export ZIG_RUNNER_OS="freebsd"
+            ;;
+    esac
+
+    echo "ZIG_EXT=$ZIG_EXT" | tee -a $ENV_FILE
+    echo "ZIG_RUNNER_OS=$ZIG_RUNNER_OS" | tee -a $ENV_FILE
+    echo "ZIG_RUNNER_ARCH=$ZIG_RUNNER_ARCH" | tee -a $ENV_FILE
+
+}
+
+zig_install_nix() {
+    RUNNER_OS="$1"
+    
+    if [[ -d "zig" ]]
     then
         echo Found Cached ZIG - Skipping install
         return
     fi
 
-    ZIG_RUNNER_OS="unknown"
-    ZIG_RUNNER_ARCH="x86_64"
-    ZIG_EXT="tar.xz"
-    
-    case $RUNNER_OS in
-        *"windows"*)
-            ZIG_RUNNER_OS="windows"
-            ZIG_EXT="zip"
-            ;;
-        *"ubuntu"*)
-            ZIG_RUNNER_OS="linux"
-            ;;
-        *"mac"*)
-            ZIG_RUNNER_OS="macos"
-            ;;
-        *"freebsd"*)
-            ZIG_RUNNER_OS="freebsd"
-            ;;
-    esac
+    setup_runner_nix $RUNNER_OS
     
     echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_RUNNER_ARCH OS-$ZIG_RUNNER_OS"
 
