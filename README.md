@@ -9,7 +9,7 @@ This installs and caches the relevant Zig based on the used GitHub runner contex
 - https://andrewkelley.me/post/zig-cc-powerful-drop-in-replacement-gcc-clang.html
 - https://www.reddit.com/r/Zig/comments/tt7irl/how_does_zig_magically_cross_compile_without/
 
-This action is GitHub re-usable workflow that is all (portable) GH Runner Bash without TypeScript knowledge required.
+This GH-runner portable re-usable Bash-based workflow does not require any TypeScript knowledge.
 
 ## Install / Check ZIG Cache
 
