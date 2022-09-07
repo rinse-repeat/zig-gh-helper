@@ -117,7 +117,7 @@ zig_install_nix() {
             rm -rf zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION
             ;;
         "zip")
-            wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION.zip
+            curl -s -o zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION.zip
             unzip -q zig.zip
             mv zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION/* .
             rm -rf zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION
