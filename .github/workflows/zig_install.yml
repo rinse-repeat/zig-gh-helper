@@ -52,15 +52,19 @@ jobs:
 #      - name: Show matrixJson
 #        run: |
 #          echo "${{ steps.set_var.outputs.matrixJson }}"
-      - name: Load ZIG checksum
+      - name: Setup ZIG Environment Vars
         shell: bash
         run: |
           source ./zig-helper/zig_map.sh
           setup_runner_nix $GITHUB_ENV ${{ inputs.os }}
-          export ZIG_CHECKSUM=`cat ./zig-helper/zig-checksums-${{ inputs.zig-version }}.json | jq --raw-output ".[\"$ZIG_RUNNER_OS_$ZIG_RUNNER_ARCH\"]"`
           export | grep ZIG
+
+      - name: Setup ZIG Checksum
+        shell: bash
+        run: |
+          export ZIG_CHECKSUM=`cat ./zig-helper/zig-checksums-${{ inputs.zig-version }}.json | jq --raw-output ".[\"${{ env.ZIG_RUNNER_OS }}_${{ env.ZIG_RUNNER_ARCH }}\"]"`
           echo "ZIG_CHECKSUM=$ZIG_CHECKSUM" | tee -a $GITHUB_ENV
-          
+
       - name: NIX Cache ZIG
         if: ${{ inputs.use-cache == true }}
         uses: actions/cache@v3
