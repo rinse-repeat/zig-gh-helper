@@ -59,7 +59,11 @@ The below restores portable Zig into ~/zig in any of the available GitHub action
 
 ## GitHub Limitations
 
-As with any re-usable GitHub action you need to use it below `jobs:` and cannot be used below `steps:` but since the Install workflow should be separate this should not be much of issue - it is recommended to run the install once / check periodically and then just retrieve it from the cache where ever it is required at.
+As with any other re-usable GitHub action the install has to run within `jobs:` context and cannot be used within `steps:` context.
+
+Since the Install workflow should be separate anyways this should not be much of issue.
+
+It is strongly recommended to run the Zig install once / check periodically and then just retrieve it always from the cache where ever it is required at which can be used in the context of `steps:`.
 
 ## Other Projects
 
