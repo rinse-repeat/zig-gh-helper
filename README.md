@@ -40,3 +40,8 @@ The below restores portable ~/zig in all available GH runners.
     path: ~/zig
 ```
 
+## Other Projects
+
+- http://musl.cc/
+- https://github.com/messense/cargo-zigbuild
+- https://github.com/cross-rs/cross
