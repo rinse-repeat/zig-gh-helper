@@ -26,7 +26,7 @@ jobs:
       zig-version: 0.9.1
 ```
 
-You can also install multiple Zig's from a matrix e.g. matrix.json in this repo:
+You can also install multiple Zig's from a matrix e.g. [matrix.json] in this repo:
 
 e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.github/workflows/zig_test.yml
 
