@@ -68,7 +68,6 @@ jobs:
         run: |
           source ./zig-helper/zig_map.sh
           zig_triplets_env $GITHUB_ENV ${{ inputs.target }}
-          cat $GITHUV_ENV
       - name: Load ZIG checksum
         shell: bash
         run: |

@@ -2,7 +2,7 @@
 
 ##################################################################
 #
-# Normalize TARGET to Zig Installation
+# Normalize TARGET to Zig Target
 #
 # linux-x86_64-0.9.1.tar.xz, linux-i386-0.9.1.tar.xz, linux-aarch64-0.9.1.tar.xz, linux-armv7a-0.9.1.tar.xz
 # macos-x86_64-0.9.1.tar.xz, NAN                    , macos-aarch64-0.9.1.tar.xz, NAN
@@ -18,19 +18,15 @@ zig_triplets_env() {
 
         *"linux"*)
             ZIG_OS=linux
-            ZIG_EXT=tar.xz
             ;;
         *"windows"*)
             ZIG_OS=windows
-            ZIG_EXT=zip
             ;;
         *"macos"*)
             ZIG_OS=macos
-            ZIG_EXT=tar.xz
             ;;
         *"darwin"*)
             ZIG_OS=macos
-            ZIG_EXT=tar.xz
             ;;
         *)
             echo "zig_map.sh ERROR No ZIG_OS handler for TARGET=$TARGET"
@@ -58,28 +54,45 @@ zig_triplets_env() {
         
     esac
 
-    echo "ZIG_EXT=$ZIG_EXT" | tee -a $ENV_FILE
     echo "ZIG_OS=$ZIG_OS" | tee -a $ENV_FILE
     echo "ZIG_ARCH=$ZIG_ARCH" | tee -a $ENV_FILE
 
     # TODO: Only from current path? come w/ something better.
-    export ZIG_HOME=$HOME/zig/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION
-    echo "ZIG_HOME=$ZIG_HOME" | tee -a $ENV_FILE
 
 }
 
 zig_install_nix() {
     export RUNNER_OS="$1"
-
+    export RUNNER_ARCH="$2"
+    
     if [[ -d "$ZIG_HOME" ]]
     then
         echo Found Cached ZIG - Skipping install
         return
     fi
 
-    echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_ARCH OS-$ZIG_OS"
+    ZIG_RUNNER_OS="unknown"
+    ZIG_RUNNER_ARCH=$RUNNER_ARCH
+    ZIG_EXT="tar.xz"
+    
+    case $RUNNER_OS in
+        "*windows*")
+            ZIG_RUNNER_OS="linux"
+            ZIG_EXT="zip"
+            ;;
+        "*ubuntu*")
+            ZIG_RUNNER_OS="linux"
+            ;;
+        "*mac*")
+            ZIG_RUNNER_OS="macos"
+            ;;
+        "*freebsd*")
+            ZIG_RUNNER_OS="freebsd"
+            ;;
+    esac
+    
+    echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_RUNNER_ARCH OS-$ZIG_RUNNER_OS"
 
-    # TODO: DRY introduce ZIG_ROOT ?
     cd $HOME
     mkdir -p zig
     cd zig
@@ -88,12 +101,16 @@ zig_install_nix() {
     
     case $ZIG_EXT in
         "tar.xz")
-            wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.tar.xz
+            wget --quiet -O zig.tar.xz https://ziglang.org/download/0.9.1/zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION.tar.xz
             tar -xvf zig.tar.xz > /dev/null 2>&1
+            mv zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION/* .
+            rm -rf zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION
             ;;
         "zip")
-            wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_OS-$ZIG_ARCH-$ZIG_VERSION.zip
+            wget --quiet -O zig.zip https://ziglang.org/download/0.9.1/zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION.zip
             unzip -q zig.zip
+            mv zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION/* .
+            rm -rf zig-$ZIG_RUNNER_OS-$ZIG_RUNNER_ARCH-$ZIG_VERSION
             ;;
         *)
             echo "zig_map ERROR: No handler for ZIG_EXT=$ZIG_EXT"
