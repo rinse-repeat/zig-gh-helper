@@ -93,6 +93,8 @@ setup_runner_nix() {
 
 zig_install_nix() {
     RUNNER_OS="$1"
+
+    cd $HOME
     
     if [[ -d "zig" ]]
     then
@@ -102,7 +104,6 @@ zig_install_nix() {
 
     echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_RUNNER_ARCH OS-$ZIG_RUNNER_OS"
 
-    cd $HOME
 #    rm -rf zig
     mkdir -p zig
     cd zig
