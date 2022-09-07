@@ -32,9 +32,7 @@ Where the `with:` keys are:
  - ext-cache / string: Cache key suffix
  - zig-version / string: Zig Version - 0.9.1 version supported atm (feel free to PR more checksums)
 
-You can also install multiple Zig's from a matrix e.g. [matrix.json](matrix.json) in this repo:
-
-e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.github/workflows/zig_test.yml
+You can also install multiple Zig's in a matrix e.g. using [matrix.json](matrix.json) in this repo:
 
 ```yaml
   install-zig:
@@ -46,6 +44,8 @@ e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.githu
       ext-cache: AAB
       zig-version: 0.9.1
 ```
+
+See this full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.github/workflows/zig_test.yml
 
 The above will put GH runner-specific Zig(s) into into relevant cache key(s)
 
