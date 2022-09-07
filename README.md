@@ -32,7 +32,7 @@ Where the `with:` keys are:
 | os          | string  | ubuntu-latest | The GitHub [runner image label](https://github.com/actions/runner-images) to be used |
 | use-cache   | boolean | true          | Cache the Zig ? _*Strongly recommended*_ |
 | ext-cache   | string  | AAA           | Cache key suffix |
-| zig-version | string  | 0.9.1         | Zig Version - 0.9.1 version supported atm (feel free to PR more checksums) |
+| zig-version | string  | 0.9.1         | Zig Version |
 
 You can also install multiple Zig's in a matrix e.g. using [matrix.json](matrix.json) in this repo:
 
@@ -72,6 +72,10 @@ As with any other re-usable GitHub action the install has to run within `jobs:` 
 Since the Install workflow should be separate anyways this should not be much of issue.
 
 It is strongly recommended to run the Zig install once / check periodically and then just retrieve it always from the cache where ever it is required at which can be used in the context of `steps:`.
+
+## TODO
+
+Only Zig 0.9.1 is supported atm. Feel free to contribute more checksums if required - e.g. see example [zig-checksums-0.9.1.json](zig-checksums-0.9.1.json)
 
 ## Other Projects
 
