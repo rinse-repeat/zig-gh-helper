@@ -27,10 +27,12 @@ jobs:
 ```
 
 Where the `with:` keys are:
- - os / string: the GitHub [runner image label](https://github.com/actions/runner-images) to be used
- - use-cache / boolean: Cache the Zig ? Strongly recommended
- - ext-cache / string: Cache key suffix
- - zig-version / string: Zig Version - 0.9.1 version supported atm (feel free to PR more checksums)
+| Key         | Type    | Description |
+| :---        | :---    | :---        |
+| os          | string  | The GitHub [runner image label](https://github.com/actions/runner-images) to be used |
+| use-cache   | boolean | Cache the Zig ? - default: true _*Strongly recommended*_ |
+| ext-cache   | string  | Cache key suffix - default: AAA |
+| zig-version | string  | Zig Version - 0.9.1 version supported atm (feel free to PR more checksums) |
 
 You can also install multiple Zig's in a matrix e.g. using [matrix.json](matrix.json) in this repo:
 
