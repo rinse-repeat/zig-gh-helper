@@ -15,6 +15,19 @@ This re-usable workflow is both portable & Bash-based requiring no extensive Typ
 
 This is what you run once maybe once a week e.g. in matrix that has runner in os:
 
+```yaml
+jobs:
+  install-zig:
+    uses: rinse-repeat/zig-gh-helper/.github/workflows/zig_install.yml@main
+    with:
+      os: ubuntu-latest
+      use-cache: true
+      ext-cache: AAB
+      zig-version: 0.9.1
+```
+
+You can also install multiple Zig's from a matrix e.g. matrix.json in this repo:
+
 e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.github/workflows/zig_test.yml
 
 ```yaml
@@ -28,9 +41,9 @@ e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.githu
       zig-version: 0.9.1
 ```
 
-The above will put GH runner-specific Zig into into it's specific cache key.
+The above will put GH runner-specific Zig(s) into into relevant cache key(s)
 
-The zig will live in ~/zig and will translate in portable manner across all GH (e.g. windows/macos/ubuntu) runners
+The zig(s) live in ~/zig and will translate in portable manner across all GH (e.g. windows/macos/ubuntu) runners
 
 ## Retrieve the cached ZIG
 
@@ -43,6 +56,10 @@ The below restores portable Zig into ~/zig in any of the available GitHub action
       key: zig-${{ env.RUNNER_OS }}-0.9.1-AAB
       path: ~/zig
 ```
+
+## GitHub Limitations
+
+As with any re-usable GitHub action you need to use it below `jobs:` and cannot be used below `steps:` but since the Install workflow should be separate this should not be much of issue - it is recommended to run the install once / check periodically and then just retrieve it from the cache where ever it is required at.
 
 ## Other Projects
 
