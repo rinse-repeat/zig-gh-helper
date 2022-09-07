@@ -36,8 +36,8 @@ The below restores portable ~/zig in all available GH runners.
   - name: Pull ZIG From Cache
     uses: actions/cache@v3
     with:
-    key: zig-${{ env.RUNNER_OS }}-0.9.1-AAB
-    path: ~/zig
+      key: zig-${{ env.RUNNER_OS }}-0.9.1-AAB
+      path: ~/zig
 ```
 
 ## Other Projects
