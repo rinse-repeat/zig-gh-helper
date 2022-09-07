@@ -32,7 +32,7 @@ The zig will live in ~/zig and will translate in portable manner across all GH (
 
 ## Retrieve the cached ZIG
 
-The below restores portable ~/zig in all available GH runners.
+The below restores portable Zig into ~/zig in any of the available GitHub action runners.
 
 ```yaml
   - name: Pull ZIG From Cache
