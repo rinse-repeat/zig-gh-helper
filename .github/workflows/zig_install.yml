@@ -7,11 +7,12 @@ on:
     inputs:
       os:
         description: 'Runner OS'
-        required: true
+        required: false
+        default: ubuntu-latest
         type: string
       use-cache:
         description: 'Zig Cache'
-        required: true
+        required: false
         default: true
         type: boolean
       ext-cache:
@@ -21,7 +22,7 @@ on:
         type: string
       zig-version:
         description: 'Zig Version'
-        required: true
+        required: false
         type: string
         default: 0.9.1
 
