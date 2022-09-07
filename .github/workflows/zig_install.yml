@@ -57,7 +57,8 @@ jobs:
         run: |
           source ./zig-helper/zig_map.sh
           setup_runner_nix $GITHUB_ENV ${{ inputs.os }}
-          export ZIG_CHECKSUM=`cat ./zig-helper/zig-checksums-0.9.1.json | jq --raw-output ".[\"${{ env.ZIG_RUNNER_OS }}_${{ env.ZIG_RUNNER_ARCH }}\"]"`
+          export ZIG_CHECKSUM=`cat ./zig-helper/zig-checksums-${{ inputs.zig-version }}.json | jq --raw-output ".[\"${{ env.ZIG_RUNNER_OS }}_${{ env.ZIG_RUNNER_ARCH }}\"]"`
+          export | grep ZIG
           echo "ZIG_CHECKSUM=$ZIG_CHECKSUM" | tee -a $GITHUB_ENV
           
       - name: NIX Cache ZIG
