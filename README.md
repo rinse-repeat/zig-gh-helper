@@ -9,7 +9,7 @@ This installs and caches the relevant Zig based on the used GitHub runner contex
 - https://andrewkelley.me/post/zig-cc-powerful-drop-in-replacement-gcc-clang.html
 - https://www.reddit.com/r/Zig/comments/tt7irl/how_does_zig_magically_cross_compile_without/
 
-This re-usable workflow is both portable & Bash-based requiring no TypeScript knowledge to maintain.
+This re-usable workflow is both portable & Bash-based requiring no extensive TypeScript to maintain.
 
 ## Install / Check ZIG Cache
 
