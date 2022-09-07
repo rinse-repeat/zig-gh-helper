@@ -1,7 +1,8 @@
-# zig-gh-helper
-Zig GH Helper
+# Zig Github Helper
 
-Portable Zig GitHub Helper
+Portable Zig GitHub Helper - Zig makes Cross-Complications a cinch!
+
+This installs and caches the relevant Zig based on the used GitHub runner context.
 
 ## Install / Check ZIG Cache
 
