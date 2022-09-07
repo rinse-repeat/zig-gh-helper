@@ -15,6 +15,8 @@ This re-usable workflow is both portable & Bash-based requiring no extensive Typ
 
 This is what you run once maybe once a week e.g. in matrix that has runner in os:
 
+e.g. see it full: https://github.com/rinse-repeat/zig-gh-helper/blob/main/.github/workflows/zig_test.yml
+
 ```yaml
   install-zig:
     needs: [matrix]
