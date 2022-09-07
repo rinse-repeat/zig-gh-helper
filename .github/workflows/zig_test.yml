@@ -29,7 +29,6 @@ jobs:
     needs: [matrix]
     uses: rinse-repeat/zig-gh-helper/.github/workflows/zig_install.yml@main
     with:
-      target: ${{ matrix.rust-target }}
       os: ${{ matrix.os }}
       use-cache: false
       ext-cache: AAA
