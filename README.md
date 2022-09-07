@@ -75,7 +75,9 @@ It is strongly recommended to run the Zig install once / check periodically and 
 
 ## TODO
 
-Only Zig 0.9.1 is supported atm. Feel free to contribute more checksums if required - e.g. see example [zig-checksums-0.9.1.json](zig-checksums-0.9.1.json)
+Only Zig 0.9.1 is supported atm.
+
+Please feel free to contribute more checksums if required - e.g. see example [zig-checksums-0.9.1.json](zig-checksums-0.9.1.json)
 
 ## Other Projects
 
