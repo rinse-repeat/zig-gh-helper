@@ -100,8 +100,6 @@ zig_install_nix() {
         return
     fi
 
-    setup_runner_nix $RUNNER_OS
-    
     echo "Installing ZIG $ZIG_VERSION Arch-$ZIG_RUNNER_ARCH OS-$ZIG_RUNNER_OS"
 
     cd $HOME
