@@ -63,7 +63,6 @@ zig_triplets_env() {
 
 zig_install_nix() {
     export RUNNER_OS="$1"
-    export RUNNER_ARCH="$2"
     
     if [[ -d "$ZIG_HOME" ]]
     then
@@ -72,21 +71,21 @@ zig_install_nix() {
     fi
 
     ZIG_RUNNER_OS="unknown"
-    ZIG_RUNNER_ARCH=$RUNNER_ARCH
+    ZIG_RUNNER_ARCH="x86_64"
     ZIG_EXT="tar.xz"
     
     case $RUNNER_OS in
-        "*windows*")
-            ZIG_RUNNER_OS="linux"
+        *"windows"*)
+            ZIG_RUNNER_OS="windows"
             ZIG_EXT="zip"
             ;;
-        "*ubuntu*")
+        *"ubuntu"*)
             ZIG_RUNNER_OS="linux"
             ;;
-        "*mac*")
+        *"mac"*)
             ZIG_RUNNER_OS="macos"
             ;;
-        "*freebsd*")
+        *"freebsd"*)
             ZIG_RUNNER_OS="freebsd"
             ;;
     esac
