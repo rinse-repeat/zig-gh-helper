@@ -4,6 +4,11 @@ Portable Zig GitHub Helper - Zig makes Cross-Complications a cinch!
 
 This installs and caches the relevant Zig based on the used GitHub runner context.
 
+- https://www.reddit.com/r/rust/comments/nii64t/zig_makes_rust_crosscompilation_just_work/
+- https://actually.fyi/posts/zig-makes-rust-cross-compilation-just-work/
+- https://andrewkelley.me/post/zig-cc-powerful-drop-in-replacement-gcc-clang.html
+- https://www.reddit.com/r/Zig/comments/tt7irl/how_does_zig_magically_cross_compile_without/
+
 ## Install / Check ZIG Cache
 
 This is what you run once maybe once a week e.g. in matrix that has runner in os:
