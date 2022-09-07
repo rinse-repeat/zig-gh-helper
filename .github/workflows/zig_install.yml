@@ -5,22 +5,10 @@ on:
 #  workflow_dispatch:
   workflow_call:
     inputs:
-#      json-matrix:
-#        description: 'JSON Matrix'
-#        required: true
-#        type: string
-#      target:
-#        description: 'Target Triplet'
-#        required: false
-#        type: string
       os:
         description: 'Runner OS'
         required: true
         type: string
-#        type: choice
-#          - macos-latest
-#          - windows-latest
-#          - ubuntu-latest
       use-cache:
         description: 'Zig Cache'
         required: true
@@ -38,8 +26,8 @@ on:
         default: 0.9.1
 
 jobs:
-  zig-test:
-    name: ZIG Install on ${{ inputs.target }} OS ${{ inputs.os }}
+  zig-install:
+    name: ZIG Install on ${{ inputs.os }}
     runs-on: ${{ inputs.os }}
     strategy:
       fail-fast: false
