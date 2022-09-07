@@ -9,10 +9,10 @@ on:
 #        description: 'JSON Matrix'
 #        required: true
 #        type: string
-      target:
-        description: 'Target Triplet'
-        required: true
-        type: string
+#      target:
+#        description: 'Target Triplet'
+#        required: false
+#        type: string
       os:
         description: 'Runner OS'
         required: true
