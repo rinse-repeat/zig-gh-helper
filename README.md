@@ -27,7 +27,7 @@ jobs:
 ```
 
 Where the `with:` keys are:
- - os / string: the GitHub runner to be used
+ - os / string: the GitHub [runner image label](https://github.com/actions/runner-images) to be used
  - use-cache / boolean: Cache the Zig ? Strongly recommended
  - ext-cache / string: Cache key suffix
  - zig-version / string: Zig Version - 0.9.1 version supported atm (feel free to PR more checksums)
