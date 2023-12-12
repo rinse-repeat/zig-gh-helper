@@ -44,6 +44,9 @@ zig_triplets_env() {
         *"aarch64"*)
             export ZIG_ARCH=aarch64
             ;;
+        *"i686"*)
+            export ZIG_ARCH=i386
+            ;;
         *"arm"*)
             export ZIG_ARCH=armv7a
             ;;
